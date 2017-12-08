@@ -4,51 +4,48 @@
 	<groupId>MyTestProject</groupId>
 	<artifactId>MyTestProject</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	
-	
-	
-	
+
 	<build>
-		<sourceDirectory>src</sourceDirectory>
+		<sourceDirectory>src/java/main</sourceDirectory>
 
-			<plugins>
-				<plugin>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.7.0</version>
-					<configuration>
-						<source>1.8</source>
-						<target>1.8</target>
-					</configuration>
-				</plugin>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
 
-				<plugin>
-					<groupId>org.apache.cxf</groupId>
-					<artifactId>cxf-codegen-plugin</artifactId>
-					<version>2.1.2</version>
-					<executions>
-						<execution>
-							<id>generate-sources</id>
-							<phase>generate-sources</phase>
-							<configuration>
-								<sourceRoot>C:/Users/jothi/git/mytest/MyTestProject/target</sourceRoot>
-								<wsdlOptions>
-									<wsdlOption>
-										<wsdl>C:\Users\jothi\git\mytest\MyTestProject\src\main\resources\e_service.wsdl</wsdl>
-										<extraargs>
-											<extraarg>-verbose</extraarg>
-											
-										</extraargs>
-									</wsdlOption>
-								</wsdlOptions>
-							</configuration>
-							<goals>
-								<goal>wsdl2java</goal>
-							</goals>
-						</execution>
-					</executions>
-				</plugin>
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>2.4.6</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<sourceRoot>${project.basedir}/src/java/gen</sourceRoot>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>${project.basedir}/src/resources/e_service.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-verbose</extraarg>
 
-			</plugins>
+									</extraargs>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
 
 	</build>
 
