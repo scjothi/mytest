@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xs:schema 
+	xmlns:tns="http://webservice.clarity.com/"
+	xmlns:xmime="http://www.w3.org/2005/05/xmlmime" 
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://webservice.clarity.com/"
+
+	elementFormDefault="unqualified" 
+	version="1.0">
+
+	<xs:import namespace="http://www.w3.org/2005/05/xmlmime" />
+	
+	<!-- ************************************************  -->
+	<!-- ************  Card Sides As PDF  ***************  -->
+	<!-- ************************************************  -->
+
+	<!-- card front and back as PDF-->
+
+	<xs:element name="getCardSidesAsPDFRequest" type="tns:getCardSidesAsPDFRequest" />
+	<xs:element name="getCardSidesAsPDFResponse" type="tns:getCardSidesAsPDFResponse" />
+
+	<xs:complexType name="getCardSidesAsPDFRequest">
+		<xs:sequence>
+			<!-- These two elements are mutually exclusive and is enforced by the service coding validation -->
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="searchCriteria" type="tns:attributeValuePair" />
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="recordId" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:complexType name="getCardSidesAsPDFResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="tns:CardSidesAsPDFRsp" />
+			<xs:element minOccurs="1" maxOccurs="1" name="serviceReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+		
+	<!-- *************************************************  -->
+	<!-- ************  Card Sides As PNG   ***************  -->
+	<!-- *************************************************  -->
+
+	<!-- card front and back as PNG-->
+
+	<xs:element name="getCardSidesAsPNGRequest" type="tns:getCardSidesAsPNGRequest" />
+	<xs:element name="getCardSidesAsPNGResponse" type="tns:getCardSidesAsPNGResponse" />
+
+	<xs:complexType name="getCardSidesAsPNGRequest">
+		<xs:sequence>
+			<!-- These two elements are mutually exclusive and is enforced by the service coding validation -->
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="searchCriteria" type="tns:attributeValuePair" />
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="recordId" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="getCardSidesAsPNGResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="tns:CardSidesAsPNGRsp"/>
+			<xs:element minOccurs="1" maxOccurs="1" name="serviceReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- **************************************************  -->
+	<!-- *********  getCardAsPDFRequest          **********  -->
+	<!-- **************************************************  -->
+
+	<!-- ecard/branded PDF (background page with card both sides) -->
+
+	<xs:element name="getCardAsPDFRequest" type="tns:getCardAsPDFRequest" />
+	<xs:element name="getCardAsPDFResponse" type="tns:getCardAsPDFResponse" />
+
+	<xs:complexType name="getCardAsPDFRequest">
+		<xs:sequence>
+			<!-- These two elements are mutually exclusive and is enforced by the service coding validation -->
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="searchCriteria" type="tns:attributeValuePair" />
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="recordId" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getCardAsPDFResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="tns:CardAsPDFRsp" />
+			<xs:element minOccurs="1" maxOccurs="1" name="serviceReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- **************************************************  -->
+	<!-- *********  getProductAsPDFRequest  **********  -->
+	<!-- **************************************************  -->
+
+	<!-- NON Cards..  booklets, letters, eobs? -->
+
+	<xs:element name="getProductAsPDFRequest" type="tns:getProductAsPDFRequest" />
+	<xs:element name="getProductAsPDFResponse" type="tns:getProductAsPDFResponse" />
+
+	<xs:complexType name="getProductAsPDFRequest">
+		<xs:sequence>
+			<!-- These two elements are mutually exclusive and is enforced by the service coding validation -->
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="searchCriteria" type="tns:attributeValuePair" />
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="recordId" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getProductAsPDFResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="tns:ProductAsPDFRsp" />
+			<xs:element minOccurs="1" maxOccurs="1" name="serviceReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- **************************************************  -->
+	<!-- *********  getAvailableCardsRequest  **********  -->
+	<!-- **************************************************  -->
+
+	<xs:element name="getAvailableCardsRequest" type="tns:getAvailableCardsRequest" />
+	<xs:element name="getAvailableCardsResponse" type="tns:getAvailableCardsResponse" />
+	
+		<xs:complexType name="getAvailableCardsRequest">
+		<xs:sequence>
+			<xs:element minOccurs="1"  maxOccurs="unbounded" name="request" type="tns:attributeValuePair" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="getAvailableCardsResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="results" type="tns:GetAvailableCardsRsp" />
+			<xs:element minOccurs="1" maxOccurs="1" name="serviceReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- **************************************************  -->
+	<!-- *********  sendEmailRequest  **********  -->
+	<!-- **************************************************  -->
+
+	<xs:element name="sendEmailRequest" type="tns:sendEmailRequest" />
+	<xs:element name="sendEmailResponse" type="tns:sendEmailResponse" />
+	
+		<xs:complexType name="sendEmailRequest">
+		<xs:sequence>
+			<xs:element minOccurs="1"  maxOccurs="1" name="recordId" type="xs:string" />
+			<xs:element minOccurs="1"  maxOccurs="1" name="emailAddress" type="xs:string" />
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="additionalParameters" type="tns:attributeValuePair" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="sendEmailResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="results" type="tns:SendEmailRsp" />
+			<xs:element minOccurs="1" maxOccurs="1" name="serviceReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- **************************************************  -->
+	<!-- *********  sendFaxRequest  **********  -->
+	<!-- **************************************************  -->
+
+	<xs:element name="sendFaxRequest" type="tns:sendFaxRequest" />
+	<xs:element name="sendFaxResponse" type="tns:sendFaxResponse" />
+
+		<xs:complexType name="sendFaxRequest">
+		<xs:sequence>
+			<xs:element minOccurs="1"  maxOccurs="1" name="recordId" type="xs:string" />
+			<xs:element minOccurs="1"  maxOccurs="1" name="faxNumber" type="xs:string" />
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="additionalParameters" type="tns:attributeValuePair" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="sendFaxResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="results" type="tns:SendFaxRsp" />
+			<xs:element minOccurs="1" maxOccurs="1" name="serviceReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<!-- **************************************************  -->
+	<!-- *********  webServiceTest  **********  --> 
+	<!-- **************************************************  -->
+
+	<xs:element name="webServiceTestRequest" type="tns:webServiceTestRequest" />
+	<xs:element name="webServiceTestResponse" type="tns:webServiceTestResponse" />
+
+		<xs:complexType name="webServiceTestRequest">
+		<xs:sequence>
+			<xs:element minOccurs="0"  maxOccurs="1" name="recordId" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="webServiceTestResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="results" type="tns:WebServiceTestRsp" />
+			<xs:element minOccurs="1" maxOccurs="1" name="serviceReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- ************************************************  -->
+	<!-- ************  Preview As PDF     ***************  -->
+	<!-- ************************************************  -->
+
+	<xs:element name="getPreviewAsPDFRequest" type="tns:getPreviewAsPDFRequest" />
+	<xs:element name="getPreviewAsPDFResponse" type="tns:getPreviewAsPDFResponse" />
+
+	<xs:complexType name="getPreviewAsPDFRequest">
+		<xs:sequence>
+			<xs:element minOccurs="0"  maxOccurs="unbounded" name="recordDetails" type="tns:attributeValuePair" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:complexType name="getPreviewAsPDFResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="results" type="tns:PreviewAsPDFRsp" />
+			<xs:element minOccurs="1" maxOccurs="1" name="serviceReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- ******************************************  -->
+	<!-- **********  Supporting Types  ************  -->
+	<!-- ******************************************  -->
+
+	<xs:element name="attributeValuePair" type="tns:attributeValuePair" />
+	<xs:element name="CardSidesAsPDFRsp" type="tns:CardSidesAsPDFRsp" />
+	<xs:element name="CardSidesAsPNGRsp" type="tns:CardSidesAsPNGRsp" />
+	<xs:element name="CardAsPDFRsp" type="tns:CardAsPDFRsp" />
+	<xs:element name="ProductAsPDFRsp" type="tns:ProductAsPDFRsp" />
+	<xs:element name="GetAvailableCardsRsp" type="tns:GetAvailableCardsRsp" />	
+	<xs:element name="SendEmailRsp" type="tns:SendEmailRsp" />	
+	<xs:element name="SendFaxRsp" type="tns:SendFaxRsp" />	
+	<xs:element name="WebServiceTestRsp" type="tns:WebServiceTestRsp" />	
+	<xs:element name="PreviewAsPDFRsp" type="tns:PreviewAsPDFRsp" />	
+
+	<xs:complexType name="searchResults">
+		<xs:sequence>
+			<xs:element minOccurs="1"  maxOccurs="1" name="recordId" type="xs:string" />
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="SearchResults" type="tns:attributeValuePair" />
+		</xs:sequence>
+	</xs:complexType>
+		
+	<xs:complexType name="attributeValuePair">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="Attribute" type="xs:string" />
+			<xs:element minOccurs="1" maxOccurs="1" name="Value" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CardSidesAsPDFRsp">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="cardBackPDF" type="xs:base64Binary" xmime:expectedContentTypes="application/pdf"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="cardFrontPDF" type="xs:base64Binary" xmime:expectedContentTypes="application/pdf"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="cardRecordId" type="xs:string" />
+			<xs:element minOccurs="1" maxOccurs="1" name="cardReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CardSidesAsPNGRsp">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="cardBackPNG" type="xs:base64Binary" xmime:expectedContentTypes="image/png"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="cardFrontPNG" type="xs:base64Binary" xmime:expectedContentTypes="image/png"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="cardRecordId" type="xs:string" />
+			<xs:element minOccurs="1" maxOccurs="1" name="cardReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="CardAsPDFRsp">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="cardPDF" type="xs:base64Binary" xmime:expectedContentTypes="application/pdf"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="cardRecordId" type="xs:string" />
+			<xs:element minOccurs="1" maxOccurs="1" name="cardReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="ProductAsPDFRsp">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="productPDF" type="xs:base64Binary" xmime:expectedContentTypes="application/pdf"/>
+			<xs:element minOccurs="0" maxOccurs="1" name="productRecordId" type="xs:string" />
+			<xs:element minOccurs="1" maxOccurs="1" name="productReturnCode" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="GetAvailableCardsRsp">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="tns:searchResults" /> 
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="SendEmailRsp">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="tns:attributeValuePair" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="SendFaxRsp">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="results" type="tns:attributeValuePair" />
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="WebServiceTestRsp">
+		<xs:sequence>
+			<xs:element minOccurs="1" maxOccurs="1" name="result" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="PreviewAsPDFRsp">
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="1" name="previewPDF" type="xs:base64Binary" xmime:expectedContentTypes="application/pdf"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>

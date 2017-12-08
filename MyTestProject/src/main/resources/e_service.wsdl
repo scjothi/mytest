@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions name="ClarityService"
+	xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+	xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice.clarity.com/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy"
+	targetNamespace="http://webservice.clarity.com/">
+
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://webservice.clarity.com/" schemaLocation="e_service.xsd" />
+		</schema>
+	</wsdl:types>
+
+	<!-- ************************************************  -->
+	<!-- ************  Messages  ************************  -->
+	<!-- ************************************************  -->
+	<wsdl:message name="getCardSidesAsPDFResponse">
+		<wsdl:part name="parameters" element="tns:getCardSidesAsPDFResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getCardSidesAsPDFRequest">
+		<wsdl:part name="parameters" element="tns:getCardSidesAsPDFRequest">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="getCardSidesAsPNGResponse">
+		<wsdl:part name="parameters" element="tns:getCardSidesAsPNGResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getCardSidesAsPNGRequest">
+		<wsdl:part name="parameters" element="tns:getCardSidesAsPNGRequest">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="getCardAsPDFResponse">
+		<wsdl:part name="parameters" element="tns:getCardAsPDFResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getCardAsPDFRequest">
+		<wsdl:part name="parameters" element="tns:getCardAsPDFRequest">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="getProductAsPDFResponse">
+		<wsdl:part name="parameters" element="tns:getProductAsPDFResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getProductAsPDFRequest">
+		<wsdl:part name="parameters" element="tns:getProductAsPDFRequest">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="getAvailableCardsResponse">
+		<wsdl:part name="parameters" element="tns:getAvailableCardsResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getAvailableCardsRequest">
+		<wsdl:part name="parameters" element="tns:getAvailableCardsRequest">
+		</wsdl:part>
+	</wsdl:message>
+	
+	<wsdl:message name="sendEmailResponse">
+		<wsdl:part name="parameters" element="tns:sendEmailResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="sendEmailRequest">
+		<wsdl:part name="parameters" element="tns:sendEmailRequest">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="sendFaxResponse">
+		<wsdl:part name="parameters" element="tns:sendFaxResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="sendFaxRequest">
+		<wsdl:part name="parameters" element="tns:sendFaxRequest">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="webServiceTestResponse">
+		<wsdl:part name="parameters" element="tns:webServiceTestResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="webServiceTestRequest">
+		<wsdl:part name="parameters" element="tns:webServiceTestRequest">
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:message name="getPreviewAsPDFResponse">
+		<wsdl:part name="parameters" element="tns:getPreviewAsPDFResponse">
+		</wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getPreviewAsPDFRequest">
+		<wsdl:part name="parameters" element="tns:getPreviewAsPDFRequest">
+		</wsdl:part>
+	</wsdl:message>
+
+	<!-- ************************************************  -->
+	<!-- ************  Port Type - Operations  **********  -->
+	<!-- ************************************************  -->
+	<wsdl:portType name="ClarityWebServiceSEI">
+		<wsdl:operation name="getCardSidesAsPDF">
+			<wsdl:input name="getCardSidesAsPDFRequest" message="tns:getCardSidesAsPDFRequest">
+			</wsdl:input>
+			<wsdl:output name="getCardSidesAsPDFResponse" message="tns:getCardSidesAsPDFResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCardSidesAsPNG">
+			<wsdl:input name="getCardSidesAsPNGRequest" message="tns:getCardSidesAsPNGRequest">
+			</wsdl:input>
+			<wsdl:output name="getCardSidesAsPNGResponse" message="tns:getCardSidesAsPNGResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getCardAsPDF">
+			<wsdl:input name="getCardAsPDFRequest" message="tns:getCardAsPDFRequest">
+			</wsdl:input>
+			<wsdl:output name="getCardAsPDFResponse" message="tns:getCardAsPDFResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getProductAsPDF">
+			<wsdl:input name="getProductAsPDFRequest" message="tns:getProductAsPDFRequest">
+			</wsdl:input>
+			<wsdl:output name="getProductAsPDFResponse" message="tns:getProductAsPDFResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getAvailableCards">
+			<wsdl:input name="getAvailableCardsRequest" message="tns:getAvailableCardsRequest">
+			</wsdl:input>
+			<wsdl:output name="getAvailableCardsResponse" message="tns:getAvailableCardsResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="sendEmail">
+			<wsdl:input name="sendEmailRequest" message="tns:sendEmailRequest">
+			</wsdl:input>
+			<wsdl:output name="sendEmailResponse" message="tns:sendEmailResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="sendFax">
+			<wsdl:input name="sendFaxRequest" message="tns:sendFaxRequest">
+			</wsdl:input>
+			<wsdl:output name="sendFaxResponse" message="tns:sendFaxResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="webServiceTest">
+			<wsdl:input name="webServiceTestRequest" message="tns:webServiceTestRequest">
+			</wsdl:input>
+			<wsdl:output name="webServiceTestResponse" message="tns:webServiceTestResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getPreviewAsPDF">
+			<wsdl:input name="getPreviewAsPDFRequest" message="tns:getPreviewAsPDFRequest">
+			</wsdl:input>
+			<wsdl:output name="getPreviewAsPDFResponse" message="tns:getPreviewAsPDFResponse">
+			</wsdl:output>
+		</wsdl:operation>
+		
+	</wsdl:portType>
+
+	<!-- ************************************************  -->
+	<!-- ************  Bindings  ************************  -->
+	<!-- ************************************************  -->
+	<wsdl:binding name="ClarityServiceSoapBinding" type="tns:ClarityWebServiceSEI">
+		<wsp:PolicyReference URI="#BindingPolicy" />
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<wsdl:operation name="getCardSidesAsPDF">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getCardSidesAsPDFRequest">
+				<wsp:PolicyReference URI="#InputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getCardSidesAsPDFResponse">
+				<wsp:PolicyReference URI="#OutputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="getCardSidesAsPNG">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getCardSidesAsPNGRequest">
+				<wsp:PolicyReference URI="#InputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getCardSidesAsPNGResponse">
+				<wsp:PolicyReference URI="#OutputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="getCardAsPDF">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getCardAsPDFRequest">
+				<wsp:PolicyReference URI="#InputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getCardAsPDFResponse">
+				<wsp:PolicyReference URI="#OutputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="getProductAsPDF">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getProductAsPDFRequest">
+				<wsp:PolicyReference URI="#InputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getProductAsPDFResponse">
+				<wsp:PolicyReference URI="#OutputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="getAvailableCards">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getAvailableCardsRequest">
+				<wsp:PolicyReference URI="#InputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getAvailableCardsResponse">
+				<wsp:PolicyReference URI="#OutputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="sendEmail">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="sendEmailRequest">
+				<wsp:PolicyReference URI="#InputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="sendEmailResponse">
+				<wsp:PolicyReference URI="#OutputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="sendFax">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="sendFaxRequest">
+				<wsp:PolicyReference URI="#InputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="sendFaxResponse">
+				<wsp:PolicyReference URI="#OutputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+
+		<wsdl:operation name="webServiceTest">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="webServiceTestRequest">
+				<wsp:PolicyReference URI="#InputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="webServiceTestResponse">
+				<wsp:PolicyReference URI="#OutputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+		<wsdl:operation name="getPreviewAsPDF">
+			<soap:operation soapAction="" style="document" />
+			<wsdl:input name="getPreviewAsPDFRequest">
+				<wsp:PolicyReference URI="#InputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="getPreviewAsPDFResponse">
+				<wsp:PolicyReference URI="#OutputBindingPolicy" />
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+
+	<!-- ************************************************  -->
+	<!-- ************  Service   ************************  -->
+	<!-- ************************************************  -->
+	<wsdl:service name="ClarityService">
+		<wsdl:port name="ClarityServicePort" binding="tns:ClarityServiceSoapBinding">
+			<soap:address location="http://localhost/eService/services/ClarityServicePort" />
+		</wsdl:port>
+	</wsdl:service>
+
+	<wsp:Policy wsu:Id="BindingPolicy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:AsymmetricBinding>
+					<wsp:Policy>
+						<sp:InitiatorToken>
+							<wsp:Policy>
+								<sp:X509Token
+									sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/AlwaysToRecipient">
+									<wsp:Policy>
+										<sp:WssX509V3Token10 />
+									</wsp:Policy>
+								</sp:X509Token>
+							</wsp:Policy>
+						</sp:InitiatorToken>
+						<sp:RecipientToken>
+							<wsp:Policy>
+								<sp:X509Token
+									sp:IncludeToken="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy/IncludeToken/Never">
+									<wsp:Policy>
+										<sp:WssX509V3Token10 />
+										<sp:RequireIssuerSerialReference />
+									</wsp:Policy>
+								</sp:X509Token>
+							</wsp:Policy>
+						</sp:RecipientToken>
+						<sp:Layout>
+							<wsp:Policy>
+								<sp:Strict />
+							</wsp:Policy>
+						</sp:Layout>
+						<sp:IncludeTimestamp />
+						<sp:OnlySignEntireHeadersAndBody />
+						<sp:AlgorithmSuite>
+							<wsp:Policy>
+								<sp:Basic128 />
+							</wsp:Policy>
+						</sp:AlgorithmSuite>
+					</wsp:Policy>
+				</sp:AsymmetricBinding>
+				<sp:Wss10>
+					<wsp:Policy>
+						<sp:MustSupportRefIssuerSerial />
+					</wsp:Policy>
+				</sp:Wss10>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+
+	<wsp:Policy wsu:Id="InputBindingPolicy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:SignedParts>
+					<sp:Body />
+				</sp:SignedParts>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+
+	<wsp:Policy wsu:Id="OutputBindingPolicy">
+		<wsp:ExactlyOne>
+			<wsp:All>
+				<sp:SignedParts>
+					<sp:Body />
+				</sp:SignedParts>
+			</wsp:All>
+		</wsp:ExactlyOne>
+	</wsp:Policy>
+
+</wsdl:definitions>
