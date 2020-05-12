@@ -1,0 +1,37 @@
+* {
+	PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; PADDING-TOP: 0px
+}
+
+H2 {
+	MARGIN-BOTTOM: 10px
+}
+#wrapper {
+	MARGIN: 20px auto 0px; WIDTH: 1000px
+}
+#wrapper H1 {
+	TEXT-ALIGN: center; MARGIN-BOTTOM: 20px; COLOR: #fff
+}
+#wrapper A {
+	TEXT-ALIGN: center; DISPLAY: block; COLOR: #fff; FONT-SIZE: 1.2em; TEXT-DECORATION: none; PADDING-TOP: 20px
+}
+#tabContainer {
+	PADDING-BOTTOM: 15px; BACKGROUND-COLOR: grey; PADDING-LEFT: 12px; WIDTH: 1000px; PADDING-RIGHT: 15px; PADDING-TOP: 15px; -moz-border-radius: 6px; border-radius: 6px
+}
+#tabs {
+	HEIGHT: 30px; OVERFLOW: hidden
+}
+#tabs > UL {
+	LIST-STYLE-TYPE: none; LIST-STYLE-IMAGE: none
+}
+#tabs > UL > LI {
+	PADDING-BOTTOM: 7px; MARGIN: 0px 2px 0px 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 10px; DISPLAY: block; BACKGROUND: #c9c9c9; FLOAT: left; COLOR: #fff; PADDING-TOP: 7px; -webkit-user-select: none; -moz-user-select: none; user-select: none; -moz-border-radius-topleft: 6px; -moz-border-radius-topright: 6px; -moz-border-radius-bottomright: 0px; -moz-border-radius-bottomleft: 0px; border-top-left-radius: 6px; border-top-right-radius: 6px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px
+}
+#tabs > UL > LI:hover {
+	BACKGROUND: black; COLOR: #333; CURSOR: pointer
+}
+#tabs > UL > LI.tabActiveHeader {
+	BACKGROUND: black; COLOR: #fffff; CURSOR: pointer
+}
+#tabscontent {
+	PADDING-BOTTOM: 8px; MARGIN: 0px; PADDING-LEFT: 10px; PADDING-RIGHT: 15px; BACKGROUND: black; COLOR: #333; PADDING-TOP: 10px; -moz-border-radius-topleft: 0px; -moz-border-radius-topright: 6px; -moz-border-radius-bottomright: 6px; -moz-border-radius-bottomleft: 6px; border-top-left-radius: 0px; border-top-right-radius: 6px; border-bottom-right-radius: 6px; border-bottom-left-radius: 6px
+}

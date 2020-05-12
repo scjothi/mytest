@@ -1,0 +1,398 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link href="./tabs_files/tabstyle.css" rel="stylesheet" type="text/css">
+
+
+<style type="text/css">
+.container { width: 410px; border: 3px solid #f7c; }
+
+.textareaContainer {
+    display: block;
+    border: 3px solid #38c;
+    padding: 10px;
+}
+
+body {
+  font: 1.0em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  background: gray;
+  font-family: sans-serif;
+}
+
+
+textarea { width: 100%; margin: 0; padding: 0; border-width: 0; }
+
+td
+{
+padding:5px;
+}
+
+th
+{
+font: 1.0em;
+padding:7px;
+}
+
+table {
+ font: 0.9em "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    border: 6px #3399FF;
+    border-radius: 15px;
+    -moz-border-radius: 15px;
+    padding: 5px;
+}
+
+iframe {
+  margin-top: 3px;
+  margin-bottom: 3px;
+   margin-right: 3px;
+    margin-left: 3px;
+
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px; 
+  border-radius: 6px; 
+}
+
+button {
+cursor:pointer; /*forces the cursor to change to a hand when the button is hovered*/
+padding:5px 25px; /*add some padding to the inside of the button*/
+background:#8AABCC; /*the colour of the button*/
+border:1px solid #E6F3FF /*required or the default border for the browser will appear*/
+/*give the button curved corners, alter the size as required*/
+-moz-border-radius: 10px;
+-webkit-border-radius: 10px;
+border-radius: 10px;
+/*give the button a drop shadow*/
+-webkit-box-shadow: 0 0 4px rgba(0,0,0, .75);
+-moz-box-shadow: 0 0 4px rgba(0,0,0, .75);
+box-shadow: 0 0 4px rgba(0,0,0, .75);
+/*style the text*/
+color:#f3f3f3;
+font-size:0.9em;
+}
+
+
+.checkboxOne {
+	width: 18px;
+	height: 18px;
+	position: relative;
+	border-radius: 3px;
+	margin: 2px;
+}
+
+
+ul.note {
+ list-style-position: outside;
+ list-style-image: none;
+ margin-left: 330px;
+ list-style-type:lower-alpha;
+ font: 0.9em;
+}
+
+ul.note1 {
+ list-style-position: outside;
+ list-style-image: none;
+ margin-left: 300px;
+ list-style-type:none;
+
+}
+
+</style>
+
+<script  src="jquery-1.6.js"></script>
+<script  src="sqlgen.js"></script>
+
+<script>
+var currTabInd = 1;
+
+function windowLoad(){
+ //alert('ggggg');
+ displayDefaultTab();
+}
+
+function naviNext()
+{
+ currTabInd = (currTabInd < 3) ? currTabInd + 1 : 1;
+ displayCurrTab();
+ return false;
+}
+
+function naviBack()
+{
+ currTabInd = (currTabInd > 1) ? currTabInd - 1 : 3;
+  displayCurrTab();
+  return false;
+}
+
+function displayCurrTab()
+{
+	for ( var i = 1; i < 4; i++ ) 
+	{
+	  //alert(currTabInd + " : " + i);
+	  if(i == currTabInd)
+	  {
+	   document.getElementById('input'+i).style.display="";
+	  }
+	  else
+	  {
+	   document.getElementById('input'+i).style.display="none";
+	  }
+	}
+}
+
+function displayDefaultTab()
+{
+	for ( var i = 2; i < 4; i++ ) 
+	{
+	   document.getElementById('input'+i).style.display="none";	  
+	}
+}
+
+</script>
+<script>
+
+var lastRow = 0;
+
+function addRow(){
+       store(); load();
+	   var cont =  $('#elements').html();
+	   lastRow = lastRow + 1;
+	   $('#elements').html(cont +'<tr><td>'+(lastRow+1)+'</td><td><input type="text" value="" id="A'+lastRow+'"/></td><td><input type="text" value="" id="B'+lastRow+'" /></td><td><input type="text" value=""  id="C'+lastRow+'" /></td><td><input type="button" value="X" id="P'+lastRow+'" onclick="removeB(this)" /></td></tr>');	 
+	  // return false;
+}
+
+function Row(a, b, c, p)
+{
+ this.a = a;
+ this.b = b;
+ this.c = c;
+ this.p = p;
+}
+
+var vals = [];
+function store(){
+ for (c=0; c<= lastRow; c++ )
+ {
+   //alert($('#A'+c).val());
+   vals[c] = new Row( $('#A'+c).val(), $('#B'+c).val(), $('#C'+c).val(), $('#P'+c).val());
+ }
+}
+
+function load()
+{
+var cont = '';
+for (c=0; c< vals.length; c++ )
+ {
+   //alert(vals[c].a);
+   cont = cont +'<tr><td>'+(c+1)+'</td><td><input type="text" value="'+vals[c].a+'" id="A'+c+'"/></td><td><input type="text" value="'+vals[c].b+'" id="B'+c+'" /></td><td><input type="text" value="'+vals[c].c+'" id="C'+c+'" /></td><td><input type="button" value="'+vals[c].p+'" id="P'+c+'" onclick="removeB(this)" /></td></tr>';
+ }
+ $('#elements').html(cont);
+}
+
+function removeB(obj)
+{
+store();
+var ind =  parseInt(obj.id.substring(1));
+vals.splice(ind,1);
+lastRow = lastRow -1;
+load();
+}
+
+var installResult = 'Install script generated here...';
+var backoutResult = 'Rollback script generated here...';
+function submitx()
+{
+  //alert('s');
+  //$('#result').innerText = 'ggggg';
+  //document.getElementById("resultval").value = x;
+  store();
+  var app = $("#application").val();
+  var comp =  $("#component").val();
+  var lstName = $("#list").val();
+  var lstCommt = $("#lisstcomment").val();
+  var delPairs =  $("#delpairs").prop('checked');
+  var rollbackDelOpt = $( "input:radio[name=backOutOpts]:checked" ).val();
+  //alert(app);
+  //alert(delPairs);
+
+  var developer = $("#developer").val();
+  var cnr  =  $("#cnr").val();
+  var dateinput =  $("#date").val();
+
+if(app.length == 0 )
+{
+ alert("'Application Name' is Required in form 1 of 3.");
+ return;
+}
+
+if(comp.length == 0 )
+{
+ alert("'Component Name' is Required in form 1 of 3.");
+ return;
+}
+
+if(lstName.length == 0 )
+{
+ alert("'List Name' is Required in form 1 of 3.");
+ return;
+}
+
+if(lstCommt.length == 0 )
+{
+ alert("'List Comment' is Required in form 1 of 3.");
+ return;
+}
+
+if(rollbackDelOpt == null )
+{
+ alert("Please enter 'Rollback Script Options' in form 2 of 3.");
+ return;
+}
+
+  installResult = x.f(app,comp,lstName,lstCommt,getInsertPairSQL(delPairs))+'';
+  backoutResult = y.f(app,comp,lstName,getRollBackSQL(rollbackDelOpt))+'';
+
+ //$("#resultval").val(installResult);
+
+  //resultFinal = 'ffffffffffff';
+
+  // $('#acewidget').location = "Ace/editor.html";
+  // document.getElementById('acewidget').contentDocument.location.reload(true);
+
+  //document.getElementById('acewidget').contentWindow.location.reload(true);
+
+  //  $('#acewidget').attr("src", "./Ace/editor.html"); //"Ace/editor.html");
+
+   document.getElementById('acewidget').contentWindow.refreshResult();
+   document.getElementById('acewidget2').contentWindow.refreshResult2();
+}
+
+</script>
+
+
+
+</head>
+
+ <body bgcolor='grey'>
+<br>
+<div align='center' >
+
+
+<!--      FORM 1 ------->
+<form id='mainform'>
+<div id='input1'>
+<table border='0' id="inputs" style="width:70%" cellspacing='0' bgcolor='#D6EAFF'>
+<tr><th align='left'><label for="application"><b>Install Script Options</b></label></th><th colspan='5' align='right'><label for="application"><b>1 of 3</b></label></th></tr>
+<tr bgcolor='#ADD6FF'><td align='left'><label for="application">*Application Name</label></td><td colspan='5' align='left'> <input type="text" value="" id="application" /></td></tr>
+<tr><td align='left'><label for="component">*Component Name</label></td><td colspan='5' align='left'><input type="text" value="" id="component"  /></td></tr>
+<tr bgcolor='#ADD6FF'>
+	<td align='left'><label for="list">*List Name</label></td>
+	<td align='left'><input type="text" value="" id="list"/></td>
+	<td align='center'><label for="listcomment">*List Comment</label></td>
+	<td> <input type="text" value="" id="lisstcomment"/></td>
+	<td align='center'><label for="createnew">Create,If does'nt exists ?</label></td>
+	<td> <input type="checkbox" value="" id="createnew" class="checkboxOne" /></td>
+</tr>
+<tr>
+    <td align='left' >*List Pairs</td>
+	<td colspan='5' align='right'><button type="button" value="Add" onclick="addRow()">&nbsp;+&nbsp;</button></td>
+</tr>
+<tr bgcolor='#ADD6FF'><td colspan='6' align='center'>
+<!-- List Pairs -->
+<table border='0' id="elements" >
+<tr><td><label>1</label></td><td><input type="text" value="" id="A0"/></td><td><input type="text" value="" id="B0" /></td><td><input type="text" value="" id="C0" /></td><td><input type="button" value="X" id="P0" onclick="removeB(this)" /></td></tr>
+</table>
+
+</td></tr>
+<tr><td align='left'><label for="delpairs">Delete existing Pairs?</label></td><td colspan='5' align='left'> <input type="checkbox" value="" id="delpairs" class="checkboxOne "/></td></tr>
+</table>
+</div>
+</form>
+<!--      FORM 2 ------->
+<form id='form2'>
+<div id='input2'>
+<table border='0' id="inputs2" style="width:70%" cellspacing='0' bgcolor='#D6EAFF'>
+<tr><th  align='left'><label for="application"><b>*Rollback Script Options</b></label></th><th colspan='5' align='right'><label for="application"><b>2 of 3</b></label></th></tr>
+<tr bgcolor='#ADD6FF'><td align='left'><label for="component">Delete List</label></td><td colspan='5' align='left'><input type="radio" value="delList" name="backOutOpts" id="delList" class="checkboxOne" /></td></tr>
+<tr><td align='left'><label for="component">Delete All Pairs of the List</label></td><td colspan='5' align='left'><input type="radio" value="delAllPairs" name="backOutOpts" id="delAllPairs" class="checkboxOne"/></td></tr>
+<tr bgcolor='#ADD6FF'><td align='left'><label for="component">Delete Only the Inserted Pairs</label></td><td colspan='5' align='left'><input type="radio" value="delSelPairs" name="backOutOpts" id="delSelPairs" class="checkboxOne"  /></td></tr>
+<!--
+<tr bgcolor='#ADD6FF'>
+	<td align='left'><label for="list">List Name</label></td>
+	<td align='left'><input type="text" value="" id="list2"/></td>
+	<td align='center'><label for="listcomment">List Comment</label></td>
+	<td> <input type="text" value="" id="lisstcomment2"/></td>
+	<td align='center'><label for="createnew">Create,If does'nt exists ?</label></td>
+	<td> <input type="checkbox" value="" id="createnew2"/></td>
+</tr>
+<tr><td align='left'><label for="delpairs">Delete existing Pairs?</label></td><td colspan='5' align='left'> <input type="checkbox" value="" id="delpairs2" /></td></tr>
+-->
+</table>
+</div>
+</form>
+
+<!--      FORM 3 ------->
+<form id='form3'>
+<div id='input3'>
+<table border='0' id="inputs1" style="width:70%" cellspacing='0' bgcolor='#D6EAFF'>
+<tr><th align='left'><label for="application"><b>General Info</b></label></th><th colspan='5' align='right'><label for="application"><b>3 of 3</b></label></th></tr>
+<tr bgcolor='#ADD6FF'><td align='left'><label for="developer">Developer Name</label></td><td colspan='5' align='left'> <input type="text" value="" id="developer" /></td></tr>
+<tr><td align='left'><label for="cnr">CNR Number</label></td><td colspan='5' align='left'><input type="text" value="" id="cnr"  /></td></tr>
+<tr bgcolor='#ADD6FF'><td align='left'><label for="cnr">Date</label></td><td colspan='5' align='left'><input type="text" value="" id="date"  /></td></tr>
+</table>
+</div>
+</form>
+
+<br><br>
+ <button value="NavBack"  type='button' onclick="naviBack()">&nbsp;<&nbsp;</button> &nbsp;<button onclick="resetx()">Reset</button> <button type='button' onclick="submitx()" >Submit</button> &nbsp;<button value="NavNext"   type='button' onclick="naviNext()">&nbsp;>&nbsp;</button>
+ </div>
+ 
+ <div id="wrapper" align='center'>
+  <div id="tabContainer" align='center'>
+    <div id="tabs">
+      <ul>
+        <li id="tabHeader_1">Install SQL</li>
+        <li id="tabHeader_2">Rollback SQL</li>
+        <!--<li id="tabHeader_3">Page 3</li> -->
+      </ul>
+    </div>
+    <div id="tabscontent">
+      <div class="tabpage" id="tabpage_1">	    
+        <iframe src="" id="acewidget" name="acewidget" width="100%" height="484px" frameBorder="0" ></iframe>
+      </div>
+      <div class="tabpage" id="tabpage_2">
+         <iframe src="" id="acewidget2" name="acewidget2" width="100%" height="484px" frameBorder="0"  ></iframe>
+      </div>
+	  <!--
+      <div class="tabpage" id="tabpage_3">
+        <h2>Page 3</h2>
+        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+        <p>Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris 
+        placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, 
+        elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui.</p>
+        <p>Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam 
+        erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus. </p>
+      </div>
+	  -->
+    </div>
+  </div>
+  </div>
+<!-- x -->
+  <script src="./tabs_files/tabs_old.js"></script>
+
+<ul  class='note1'><li>Follow the steps below to export the generated script:</li></ul>
+<br>
+<div >
+<ul class='note'>
+      <li>Right click on the editor above and do 'Select All' OR Press 'Ctrl+A' with cursor in the editor.</li>
+      <li>Right click again to do 'Copy' OR Press 'Ctrl+C'. </li>
+      <li>Open a text editor like 'EditPLus',  'Notepad++' or 'Eclipse'. Sorry, 'Notepad' does not work.</li>
+      <li>Paste the contents and save the file to your desired location.</li>
+</ul>
+</div>
+
+<br><br>
+
+ </body>
+</html>

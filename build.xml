@@ -1,0 +1,53 @@
+<project name="ScriptGenTool" default="war">
+	<property name="war.name" value="${ant.project.name}.war" />
+	<property name="web.root" value="WebRoot" />
+	<property name="webinf.lib" value="${web.root}/WEB-INF/lib" />
+	<property name="webinf.classes" value="${web.root}/WEB-INF/classes" />
+	<property file="${user.home}/ant.properties" />
+
+	<target name="clean-deploy" depends="clean, deploy" />
+
+	<target name="init">
+				<mkdir dir="build/classes"/>
+				<mkdir dir="dist" />
+	</target>
+		
+
+	<target name="clean" description="clean all the generated stuff">
+		<delete dir="dist" />
+	</target>
+
+	<target name="war" depends="clean,init" >
+		    <war destfile="dist/${war.name}" webxml="WEB-INF/web.xml">
+	
+	     <fileset dir=".">
+	     	<include name="Ace/**/*.*"/>
+	     	<include name="tabs_files/*.*"/>
+	     	<include name="*.html"/>
+	     	<include name="*.js"/>
+		 </fileset>
+		        
+		        <!--<lib dir="WebContent/WEB-INF/lib"/>-->
+		        <!--<classes dir="build/classes"/> -->
+		    </war>
+	</target>
+
+
+	<target name="deploy" depends="war" description="Deploy the war file to a local JBoss instance">
+		<delete>
+			<fileset dir="${jboss.home}/standalone/deployments" includes="${war.name}" />
+		</delete>
+		<copy todir="${jboss.home}/standalone/deployments">
+			<fileset dir="dist" includes="${war.name}" />
+		</copy>
+	</target>
+
+	<target name="undeploy" description="Undeploy application from JBoss 7">
+		<delete>
+			<fileset dir="${jboss.home}/standalone/deployments" includes="${war.name}" />
+		</delete>
+	</target>
+
+
+
+</project>

@@ -1,0 +1,9 @@
+<jboss-deployment-structure>
+    <!--
+          The JDBC drivers are added explicitly as modules depended on by the web application,
+          so that both the container and the application can see the classes.
+     -->
+    <deployment>
+       
+    </deployment>
+</jboss-deployment-structure>
